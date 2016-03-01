@@ -30,13 +30,13 @@ public class MenuState extends GameState{
 		
 		try{
 			
-			bg = new Background("/Backgrounds/bg.png", 1);
+			bg = new Background("/Backgrounds/download.png", 1);
 			bg.setVector(-0.5, 0);
 			
-			titleColor = new Color(128,0,0);
-			titleFont = new Font("Century Gothic", Font.PLAIN, 28);
+			titleColor = new Color(20,143,230);
+			titleFont = new Font("Century Gothic", Font.PLAIN, 32);
 			
-			font = new Font("Arial", Font.PLAIN, 12);
+			font = new Font("Arial", Font.PLAIN, 25);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -61,7 +61,7 @@ public class MenuState extends GameState{
 		//nadpis
 		g.setColor(titleColor);
 		g.setFont(titleFont);
-		g.drawString("PRGMK PRJKT", 80, 70);
+		g.drawString("PRGMK PRJKT", 210, 120);
 		
 		//menu
 		g.setFont(font);
@@ -71,7 +71,7 @@ public class MenuState extends GameState{
 			}else {
 				g.setColor(Color.red);
 			}
-			g.drawString(options[i], 145, 140 + i * 15);
+			g.drawString(options[i], 280, 200 + i * 50);
 		}
 	}
 	

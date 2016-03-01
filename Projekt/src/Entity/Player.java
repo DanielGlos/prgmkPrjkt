@@ -18,7 +18,7 @@ public class Player extends MapObject{
 	//ANIMACIE
 	private ArrayList<BufferedImage[]> sprites;
 	private final int[] numFrames = {
-		2, 8, 1, 2, 4, 2, 5
+		8, 12
 	};
 	
 	private static final int IDLE = 0;
@@ -33,10 +33,10 @@ public class Player extends MapObject{
 	public Player(TileMap mapa) {
 		super(mapa);
 		
-		width = 30;
-		height = 30;
-		cWidth = 20;
-		cHeight = 20;
+		width = 103;
+		height = 103;
+		cWidth = 100;
+		cHeight = 100;
 		
 		moveSpeed = 0.3;
 		maxSpeed = 1.6;
@@ -48,9 +48,9 @@ public class Player extends MapObject{
 		
 		
 		try{
-			BufferedImage spriteSheet = ImageIO.read(getClass().getResourceAsStream("/Sprites/Player/playersprites.gif"));
+			BufferedImage spriteSheet = ImageIO.read(getClass().getResourceAsStream("/Sprites/Player/hodor.gif"));
 			sprites = new ArrayList<BufferedImage[]>();
-			for(int i = 0; i < 7; i++) {
+			for(int i = 0; i < 2; i++) {
 				BufferedImage[] bi = new BufferedImage[numFrames[i]];
 				for(int j = 0; j < numFrames[i]; j++) {
 					if(i != SCRATCHING) {
@@ -153,16 +153,16 @@ public class Player extends MapObject{
 			if(currAction != WALKING) {
 				currAction = WALKING;
 				animation.setFrames(sprites.get(WALKING));
-				animation.setDelay(40);
-				width = 30;
+				animation.setDelay(80);
+				width = 103;
 			}
 		}
 		else {
 			if(currAction != IDLE) {
 				currAction = IDLE;
 				animation.setFrames(sprites.get(IDLE));
-				animation.setDelay(400);
-				width = 30;
+				animation.setDelay(100);
+				width = 103;
 			}
 		}
 		

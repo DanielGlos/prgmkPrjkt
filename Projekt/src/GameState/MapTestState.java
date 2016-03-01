@@ -29,9 +29,9 @@ public class MapTestState extends GameState{
 	@Override
 	public void init() {
 
-		tileMap = new TileMap(30);
-		tileMap.loadTiles("/Tilesets/grasstileset.gif");
-		tileMap.loadMap("/Maps/testMap.map");
+		tileMap = new TileMap(60);
+		tileMap.loadTiles("/Tilesets/Tilesets.gif");
+		tileMap.loadMap("/Maps/noveTile.map");
 		
 		tileMap.setPosition(0, 0);
 		tileMap.setTween(1);
@@ -41,7 +41,7 @@ public class MapTestState extends GameState{
 		player = new Player(tileMap);
 		player.setPosition((GamePanel.WIDTH * GamePanel.SCALE) / 2, (GamePanel.HEIGHT * GamePanel.SCALE) / 2);
 		
-		populateNPCs();
+		//populateNPCs();
 		
 	}
 	
@@ -58,9 +58,9 @@ public class MapTestState extends GameState{
 		player.update();
 		tileMap.setPosition(GamePanel.WIDTH / 2 - player.getPosX(),GamePanel.HEIGHT / 2 - player.getPosY());
 		
-		bg.setBackgroundPosition(tileMap.getPosX(), tileMap.getposY());
+		//bg.setBackgroundPosition(tileMap.getPosX(), tileMap.getposY());
 		
-		slugger.update();
+		//slugger.update();
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class MapTestState extends GameState{
 		tileMap.draw(g);
 		player.draw(g);
 		
-		slugger.draw(g);
+		//slugger.draw(g);
 		
 	}
 

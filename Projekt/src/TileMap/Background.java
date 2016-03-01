@@ -44,11 +44,14 @@ public class Background {
 	}
 	
 	public void drawBackground(Graphics2D g) {
-		if(bgPosX < -GamePanel.WIDTH) {
+		/**
+		 * 1280 je width backgroundu aj okna
+		 */
+		if(bgPosX < -1280) {
 			bgPosX = 0;
 		}
 		g.drawImage(backgroundImage, (int) bgPosX, (int) bgPosY,null);
-		g.drawImage(backgroundImage, (int) bgPosX + GamePanel.WIDTH, (int) bgPosY,null);
+		g.drawImage(backgroundImage, (int) bgPosX + 1280, (int) bgPosY,null);
 	}
 	
 }
