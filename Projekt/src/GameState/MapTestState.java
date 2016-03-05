@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import Entity.Enemy;
 import Entity.Player;
 import Entity.Enemies.Slugger;
+import Entity.Interact.Kanal;
 import Main.GamePanel;
 import TileMap.Background;
 import TileMap.TileMap;
@@ -18,6 +19,7 @@ public class MapTestState extends GameState{
 	
 	private Player player;
 	private Enemy slugger;
+	private Kanal kanal;
 	
 	public MapTestState(GameStateManager gsm){
 		this.gsm = gsm;
@@ -39,7 +41,11 @@ public class MapTestState extends GameState{
 		bg = new Background("/Backgrounds/test.png", 0.1);
 		
 		player = new Player(tileMap);
-		player.setPosition((GamePanel.WIDTH * GamePanel.SCALE) / 2, (GamePanel.HEIGHT * GamePanel.SCALE) / 2);
+		player.setPosition(200, 200);
+		
+		
+		kanal = new Kanal(tileMap);
+		kanal.setPosition(600, 420);
 		
 		//populateNPCs();
 		
@@ -61,6 +67,12 @@ public class MapTestState extends GameState{
 		//bg.setBackgroundPosition(tileMap.getPosX(), tileMap.getposY());
 		
 		//slugger.update();
+		
+		if(player.intersects(kanal)) {
+			gsm.setState(GameStateManager.State.KanalState);
+			gsm.getCurrentState().init();
+			
+		}
 	}
 
 	@Override
@@ -74,6 +86,11 @@ public class MapTestState extends GameState{
 	}
 
 
+	public Player getPlayer() {
+		return player;
+	}
+	
+	
 	@Override
 	public void keyPressed(int k) {
 		if(k == KeyEvent.VK_LEFT) player.setLeft(true);

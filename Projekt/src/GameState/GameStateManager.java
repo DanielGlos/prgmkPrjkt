@@ -9,7 +9,8 @@ public class GameStateManager {
 	
 	public enum State{
 		MenuState,
-		MapTestState
+		MapTestState,
+		KanalState
 	}
 	
 	public GameStateManager() {
@@ -18,12 +19,18 @@ public class GameStateManager {
 		
 		currentState = State.MenuState;
 		gameStates.add(new MenuState(this));
-		gameStates.add(new MapTestState(this));
+		GameState mapTestState = new MapTestState(this);
+		gameStates.add(mapTestState);
+		gameStates.add(new KanalState(this, mapTestState));
 	}
 	
 	public void setState(State s) {
 		currentState = s;
 		gameStates.get(currentState.ordinal());
+	}
+	
+	public GameState getCurrentState() {
+		return gameStates.get(currentState.ordinal());
 	}
 	
 	public void update() {

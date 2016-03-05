@@ -84,6 +84,10 @@ public class Player extends MapObject{
 	public int getHealth() { return health; }
 	public int getMaxHealth() { return maxHealth; }
 	
+	public void setMap(TileMap map) {
+		this.mapa = map;
+	}
+	
 	private void getNextPosition() {
 		
 		// movement
