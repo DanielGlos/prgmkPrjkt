@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import Entity.Enemy;
 import Entity.Player;
 import Entity.Enemies.Slugger;
-import Entity.Interact.Kanal;
+import Entity.Interact.Dvere;
 import Main.GamePanel;
 import TileMap.Background;
 import TileMap.TileMap;
@@ -19,7 +19,10 @@ public class MapTestState extends GameState{
 	
 	private Player player;
 	private Enemy slugger;
-	private Kanal kanal;
+	private Dvere kanal;
+	
+	private double savedPosX;
+	private double savedPosY;
 	
 	public MapTestState(GameStateManager gsm){
 		this.gsm = gsm;
@@ -44,7 +47,7 @@ public class MapTestState extends GameState{
 		player.setPosition(200, 200);
 		
 		
-		kanal = new Kanal(tileMap);
+		kanal = new Dvere(tileMap);
 		kanal.setPosition(600, 420);
 		
 		//populateNPCs();
@@ -57,7 +60,11 @@ public class MapTestState extends GameState{
 		slugger.setPosition(100, 100);
 	}
 	
-	
+	public void returned() {
+		player.setMap(tileMap);
+		player.setPosition(savedPosX, savedPosY);
+		player.setMapPosition();
+	}
 
 	@Override
 	public void update() {
@@ -69,9 +76,10 @@ public class MapTestState extends GameState{
 		//slugger.update();
 		
 		if(player.intersects(kanal)) {
+			savedPosX = kanal.getPosX() + 100;
+			savedPosY = kanal.getPosY();
 			gsm.setState(GameStateManager.State.KanalState);
 			gsm.getCurrentState().init();
-			
 		}
 	}
 

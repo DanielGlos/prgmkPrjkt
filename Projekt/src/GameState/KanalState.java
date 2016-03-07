@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
 import Entity.Player;
+import Entity.Interact.Dvere;
 import Main.GamePanel;
 import TileMap.Background;
 import TileMap.TileMap;
@@ -16,6 +17,7 @@ public class KanalState extends GameState{
 	
 	private Player player;
 	
+	private Dvere back;
 	
 	public KanalState(GameStateManager gsm, GameState parentState) {
 		this.gsm = gsm;
@@ -28,7 +30,7 @@ public class KanalState extends GameState{
 	public void init() {
 		tileMap = new TileMap(60);
 		tileMap.loadTiles("/Tilesets/Tilesets.gif");
-		tileMap.loadMap("/Maps/kanalMap1.map");
+		tileMap.loadMap("/Maps/kanalMap.map");
 		
 		tileMap.setPosition(0, 0);
 		tileMap.setTween(1);
@@ -38,7 +40,10 @@ public class KanalState extends GameState{
 		
 		player.setMap(tileMap);
 		player.setMapPosition();
-		player.setPosition(100, 100);
+		player.setPosition(100, 300);
+		
+		back = new Dvere(tileMap);
+		back.setPosition(19 * tileMap.getTileSize() , tileMap.getTileSize() * 4);
 		
 	}
 
@@ -47,6 +52,11 @@ public class KanalState extends GameState{
 		player.update();
 		tileMap.setPosition(GamePanel.WIDTH / 2 - player.getPosX(),GamePanel.HEIGHT / 2 - player.getPosY());
 		
+		
+		if(back.intersects(player)) {
+			gsm.setState(GameStateManager.State.MapTestState);
+			((MapTestState)gsm.getCurrentState()).returned();
+		}
 	}
 
 	@Override
